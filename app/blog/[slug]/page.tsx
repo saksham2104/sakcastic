@@ -4,9 +4,11 @@ import matter from "gray-matter"
 import { remark } from "remark"
 import html from "remark-html"
 
-export default async function Post({ params }: { params: { slug: string } }) {
+export default async function Post({ params }: { params: Promise<{ slug: string }> }) {
 
-  const filePath = path.join(process.cwd(), "posts", `${params.slug}.md`)
+  const { slug } = await params
+
+  const filePath = path.join(process.cwd(), "posts", `${slug}.md`)
 
   if (!fs.existsSync(filePath)) {
     return <div>Post not found</div>
@@ -16,10 +18,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
 
   const { data, content } = matter(fileContent)
 
-  const processedContent = await remark()
-    .use(html)
-    .process(content)
-
+  const processedContent = await remark().use(html).process(content)
   const contentHtml = processedContent.toString()
 
   return (
