@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import ThemeToggle from "@/components/theme-toggle";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -8,7 +10,8 @@ export const metadata: Metadata = {
     default: "Sakcastic",
     template: "%s | Sakcastic",
   },
-  description: "Personal blog about programming, distributed systems, chess, and modern software craft.",
+  description:
+    "Personal blog about programming, distributed systems, chess, and modern software craft.",
 };
 
 export default function RootLayout({
@@ -33,6 +36,7 @@ export default function RootLayout({
               <nav className="nav-links" aria-label="Primary">
                 <Link href="/">Home</Link>
                 <Link href="/blog">Blog</Link>
+                <ThemeToggle />
               </nav>
             </div>
           </header>
@@ -42,7 +46,6 @@ export default function RootLayout({
           <footer className="site-footer">
             <div className="container site-footer-inner">
               <p>Sakcastic is a personal writing space for software ideas and thoughtful experiments.</p>
-              <p>Built with Next.js and deployed on Vercel.</p>
             </div>
           </footer>
         </div>
