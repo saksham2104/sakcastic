@@ -6,25 +6,16 @@ export default function BlogPage() {
 
   return (
     <main style={{ padding: "40px" }}>
-
       <h1>Blog</h1>
 
-      {posts.map((post) => (
-
-        <div key={post.slug} style={{ marginBottom: "30px" }}>
-
+      {posts.map(post => (
+        <div key={post.slug}>
           <a href={`/blog/${post.slug}`}>
             <h2>{post.title}</h2>
           </a>
-
-          <p>{post.date} • {post.readingTime}</p>
-
-          <p>{post.tags.join(", ")}</p>
-
+          <p>{post.date}</p>
         </div>
-
       ))}
-
     </main>
   )
 }
